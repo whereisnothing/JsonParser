@@ -26,6 +26,15 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        testParser();
+    }
+
+    public void testParser(){
+        JsonParser parser = JsonParser.getInstance(this);
+        parser.loadFileNameFromAssetsFolder("test.txt");
+        Object object = parser.parse();
+
     }
 
     @Override
