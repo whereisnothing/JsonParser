@@ -51,6 +51,53 @@ public class JsonParser {
         }
     }
 
+    public static String objectToString(Object o){
+        StringBuilder sb = new StringBuilder();
+        if (o == null){
+            sb.append("null");
+        } else if (o instanceof Map<?,?>){
+            Map<String,Object> map = (Map<String, Object>) o;
+            sb.append("{");
+            int i = 0;
+            for(Map.Entry<String,Object> entry : map.entrySet()){
+                if (i!=0){
+                    sb.append(",");
+                }
+                String key = entry.getKey();
+                sb.append("\""+key+"\"");
+                sb.append(":");
+                sb.append(objectToString(entry.getValue()));
+                ++i;
+            }
+            sb.append("}");
+        } else if (o instanceof List<?>){
+            List<Object> list = (List<Object>) o;
+            sb.append("[");
+            int i = 0;
+            for (int j = 0; j < list.size(); j++) {
+                if (i!=0){
+                    sb.append(",");
+                }
+                sb.append(objectToString(list.get(j)));
+                ++i;
+            }
+            sb.append("]");
+        } else if (o instanceof Integer){
+            sb.append(String.valueOf(o));
+        } else if (o instanceof Float){
+            sb.append(String.valueOf(o));
+        } else if (o instanceof Double){
+            sb.append(String.valueOf(o));
+        } else if (o instanceof Boolean){
+            sb.append(String.valueOf(o));
+        } else if (o instanceof String){
+            sb.append("\""+String.valueOf(o)+"\"");
+        } else {
+            sb.append("");
+        }
+        return sb.toString();
+    }
+
     public void loadFileNameFromAssetsFolder(String fileNameInAssetsFolder) {
         try {
             InputStream inputStream = null;
@@ -181,7 +228,7 @@ public class JsonParser {
                 if (prevType == TOKEN_TYPE.COLON) {
                     typeStack.pop();
                     typeStack.pop();
-                    dumpIndexAndTypeStackAndObjectStack();
+//                    dumpIndexAndTypeStackAndObjectStack();
                     String key = (String) objectStack.pop();
                     Map<String, Object> map = (Map<String, Object>) objectStack.peek();
                     map.put(key, string);

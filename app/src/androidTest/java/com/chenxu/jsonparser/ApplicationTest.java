@@ -9,10 +9,22 @@ import java.util.Stack;
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
  */
 public class ApplicationTest extends ApplicationTestCase<Application> {
+    public void testInstanceOf(){
+//        String s = null;
+//        boolean t = true,f=false;
+//        LogUtil.ii("t:"+String.valueOf(t)+" f:"+String.valueOf(f));
+//        if (s instanceof Null){
+//            LogUtil.ii("s instanceof null is true");
+//        }else{
+//            LogUtil.ii("s instanceof null is false");
+//        }
+    }
     public void testJsonParser(){
         JsonParser parser = JsonParser.getInstance(getContext());
         parser.loadFileNameFromAssetsFolder("test.txt");
         Object object = parser.parse();
+        String string = JsonParser.objectToString(object);
+        LogUtil.ii("objectToString:"+string);
     }
 //    public void testUnicode(){
 //        String s = "0063";
