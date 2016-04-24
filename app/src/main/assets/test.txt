@@ -1,1 +1,2 @@
-{"key1":"value","key2":2.0,"key3":false,"key4":[{"name":"chenxu","age":28},{"name":"zhangsan","age":24}]}
+{"key1":"value","key2":2.0,"key3":false,"key4":[{"name":"chenxu","age":28,"favoriteList":[{"name":"apple","color":"red"}]},{"name":"zhangsan","age":24,
+"favoriteList":[{"name":"orange","color":"yellow"},{"name":"book","color":"white"}]}]}
