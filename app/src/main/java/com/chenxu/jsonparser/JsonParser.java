@@ -1,6 +1,7 @@
 package com.chenxu.jsonparser;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 
 import java.io.BufferedReader;
@@ -145,6 +146,14 @@ public class JsonParser {
         }
     }
 
+    private boolean isInteger(String s){
+        if (TextUtils.isEmpty(s)){
+            return false;
+        } else {
+            return s.matches("[-|+]?\\d{1,}");
+        }
+    }
+
     private TOKEN_TYPE getNextToken() {
         TOKEN_TYPE type = getNextTokenType();
         skipSpace();
@@ -244,9 +253,13 @@ public class JsonParser {
                 String numberString = getNumberString();
                 numberString=numberString.replaceAll("\\s","");
 //                LogUtil.ii("acquired number:" + numberString);
-                float number = 0;
+                Object number = 0;
                 try {
-                    number = Float.parseFloat(numberString);
+                    if(isInteger(numberString)){
+                        number= Integer.parseInt(numberString);
+                    } else {
+                        number = Double.parseDouble(numberString);
+                    }
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                     dumpError();

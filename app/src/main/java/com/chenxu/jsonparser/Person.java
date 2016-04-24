@@ -5,7 +5,7 @@ package com.chenxu.jsonparser;
  */
 public class Person {
     private String name;
-    private float age;
+    private int age;
 
     public Person() {
     }
@@ -25,11 +25,11 @@ public class Person {
         this.name = name;
     }
 
-    public float getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(float age) {
+    public void setAge(int age) {
         this.age = age;
     }
 }
