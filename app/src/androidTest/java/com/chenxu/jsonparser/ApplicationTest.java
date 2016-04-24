@@ -25,6 +25,10 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         Object object = parser.parse();
         String string = JsonParser.objectToString(object);
         LogUtil.ii("objectToString:"+string);
+
+        Bean bean=new Bean();
+        Map2BeanUtil.transformMapOrList2Bean(object, bean);
+        bean.dump();
     }
 //    public void testUnicode(){
 //        String s = "0063";
