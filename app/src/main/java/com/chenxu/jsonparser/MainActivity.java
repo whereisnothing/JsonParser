@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
         parser.loadFileNameFromAssetsFolder("test.txt");
         Object object = parser.parse();
 
+        Bean bean = new Bean();
+        Map2BeanUtil.transformMapOrList2Bean(object, bean);
+
     }
 
     @Override
